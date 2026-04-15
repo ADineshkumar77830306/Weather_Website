@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-dark: #050505;
+    --glass: rgba(255, 255, 255, 0.08);
+    --glass-strong: rgba(255, 255, 255, 0.12);
+    --border: rgba(255, 255, 255, 0.15);
+    --accent: #ff4d4d;
+    --accent-soft: rgba(255, 77, 77, 0.4);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-primary);
+    background: radial-gradient(circle at top, #111 0%, #000 60%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 🔥 Smooth fade-in for premium feel */
+body {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= LOADING ================= */
+.initial-load {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #000, #0a0a0a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    z-index: 1000;
+}
+
+/* ================= BACKGROUND VIDEO ================= */
+#bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.5) contrast(1.1);
+}
+
+/* ================= WEATHER CARD ================= */
+.weather-box {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+    box-shadow: 
+        0 10px 40px rgba(0,0,0,0.6),
+        inset 0 0 20px rgba(255,255,255,0.05);
+
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+
+    transition: all 0.4s ease;
+}
+
+.weather-box:hover {
+    transform: translate(-50%, -50%) scale(1.02);
+    box-shadow: 
+        0 20px 60px rgba(0,0,0,0.8),
+        0 0 30px var(--accent-soft);
+}
+
+/* Temperature */
+.temperature {
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin: 12px 0;
+    letter-spacing: 1px;
+}
+
+/* Details */
+.weather-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.weather-detail-item {
+    flex: 1;
+    background: var(--glass-strong);
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.weather-detail-item:hover {
+    border: 1px solid var(--accent-soft);
+    transform: translateY(-3px);
+}
+
+/* ================= SPINNER ================= */
+.loading-spinner {
+    font-size: 2rem;
+    animation: spin 1s linear infinite;
+    filter: drop-shadow(0 0 8px var(--accent));
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* ================= PROMPT FORM ================= */
+.prompt-form {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 92%;
+    max-width: 520px;
+    padding: 10px;
+
+    border-radius: 50px;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Input */
+.prompt-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    padding: 12px 15px;
+    font-size: 0.95rem;
+}
+
+.prompt-input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+/* Buttons */
+.prompt-actions button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+
+    background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 5px 20px rgba(255, 77, 77, 0.5);
+    transition: all 0.3s ease;
+}
+
+.prompt-actions button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(255, 77, 77, 0.8);
+}
+
+.prompt-actions button:active {
+    transform: scale(0.95);
+}
+
+/* HEADER */
+.app-header {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 2;
+    animation: fadeSlideDown 1s ease;
+}
+
+.app-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ffffff, #ff4d4d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-subtitle {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.7);
+}
+
+/* Animation */
+@keyframes fadeSlideDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
